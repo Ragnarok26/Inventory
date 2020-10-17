@@ -1,0 +1,135 @@
+<p-messages></p-messages>
+<p-blockUI [blocked]="loading"
+            [target]="tt">
+    <p-progressSpinner [style]="{width: '10%', height: '10%', position:'absolute', top:'45%', left:'45%'}"
+                        strokeWidth="8"
+                        fill="transparent"
+                        animationDuration=".5s">
+    </p-progressSpinner>
+</p-blockUI>
+<input type="hidden" [(ngModel)]="isLoaded" />
+<p-table #tt
+         [value]="products"
+         dataKey="id"
+         [responsive]="true"
+         [paginator]="true"
+         [rows]="10"
+         [totalRecords]="products?.length"
+         [rowsPerPageOptions]="[10,20,50]"
+         [style]="{width: '100%', height: '100%', margin: '0px', padding: '0px', float: 'left' }">
+    <ng-template pTemplate="caption">
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-2 p-md-2">
+            <b style="font-size: 24px;">Acciones</b>
+        </div>
+        <div class="p-field p-col-10 p-md-10">
+            <button pButton
+                    icon="pi pi-plus"
+                    type="button"
+                    label="Agregar Producto"
+                    (click)="show()"
+                    class="ui-button-success ui-button-rounded">
+            </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="ui-p-3">Nombre</th>
+        <th class="ui-p-4">Costo</th>
+        <th class="ui-p-4">IVA 16%</th>
+        <th class="ui-p-5">Precio</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-ri="rowIndex">
+      <tr>
+        <td class="ui-fluid ui-p-3">
+          <span class="ui-column-title">Nombre</span>
+          {{product.nombre}}
+        </td>
+        <td class="ui-fluid ui-p-4">
+          <span class="ui-column-title">Costo</span>
+          {{product.costo | currency}}
+        </td>
+        <td class="ui-p-4">
+          <span class="ui-column-title">IVA</span>
+          {{product.iva | currency}}
+        </td>
+        <td class="ui-p-5">
+          <span class="ui-column-title">Precio</span>
+          {{product.precio | currency}}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td>Totales</td>
+            <td>{{summaryCost | currency}}</td>
+            <td>{{summaryIva | currency}}</td>
+            <td>{{summaryPrice | currency}}</td>
+        </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog [(visible)]="displayDialog"
+            [modal]="true"
+            [style]="{width: '80vw'}"
+            [maximizable]="true"
+            [baseZIndex]="10000"
+            [draggable]="false"
+            [resizable]="false"
+            *ngIf="newProduct">
+    <p-header>
+      <b>
+        &nbsp;
+        Nueva Producto
+        &nbsp;
+      </b>
+    </p-header>
+      <div class="ui-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-12" style="padding-top: 15px;">
+            <label for="new-product-name">Nombre</label>
+            <input id="new-product-name" 
+                    type="text" 
+                    size="255" 
+                    pInputText 
+                    [(ngModel)]="newProduct.nombre" 
+            />
+        </div>
+        <div class="p-field p-col-12 p-md-12" style="padding-top: 15px;">
+            <label for="new-product-cost">Costo</label>
+            <p-inputNumber id="new-product-cost" 
+                            [(ngModel)]="newProduct.costo" 
+                            mode="currency" 
+                            currency="USD" 
+                            locale="en-US"
+                            (keyup)="onCostChangeEvent($event)">
+            </p-inputNumber>
+        </div>
+        <div class="p-field p-col-12 p-md-12" style="padding-top: 15px;">
+            <label for="new-product-iva">IVA</label>
+            <p-inputNumber id="new-product-iva" 
+                            [(ngModel)]="newProduct.iva" 
+                            mode="currency" 
+                            currency="USD" 
+                            locale="en-US"
+                            [disabled]="true">
+            </p-inputNumber>
+        </div>
+        <div class="p-field p-col-12 p-md-12" style="padding-top: 15px;">
+            <label for="new-product-price">Precio</label>
+            <p-inputNumber id="new-product-price" 
+                            [(ngModel)]="newProduct.precio" 
+                            mode="currency" 
+                            currency="USD" 
+                            locale="en-US"
+                            (keyup)="onPriceChangeEvent($event)">
+            </p-inputNumber>
+        </div>
+      </div>
+    <p-footer>
+      <button type="button" class="ui-button-raised ui-button-rounded" pButton (click)="add()" label="Agregar"></button>
+      &nbsp;&nbsp;&nbsp;
+      <button type="button" class="ui-button-secondary ui-button-raised ui-button-rounded" pButton (click)="cancel()" label="Cancelar"></button>
+    </p-footer>
+  </p-dialog>

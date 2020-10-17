@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs
+/InventoryFront/node_modules
+/InventoryServer/node_modules
