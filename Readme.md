@@ -1,11 +1,11 @@
 # INVENTARIO TECHNOGI
 
-*Antes de realizar las configuraciones correspondientes, se da por hecho que ya
+Antes de realizar las configuraciones correspondientes, se da por hecho que ya
 se encuentran instaladas y configuradas las siguientes herramientas:
 1. Node Package Manager (NPM última versión).
 2. MySQL Server (última versión), debe permitir conexiones remotas con el usuario
    que se vaya a utilizar.
-3. Cliente MySQL de su preferencia.*
+3. Cliente MySQL de su preferencia.
 
 Al momento de clonar el proyecto, se debe de tener en cuenta la ubicación local 
 de la carpeta, a partir de ahora le llamaremos **$REPO**
