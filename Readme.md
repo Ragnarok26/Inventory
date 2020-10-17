@@ -1,5 +1,5 @@
-#INVENTARIO TECHNOGI
-
+# INVENTARIO TECHNOGI
+*
 Antes de realizar las configuraciones correspondientes, se da por hecho que ya
 se encuentran instaladas y configuradas las siguientes herramientas:
 1. Node Package Manager (NPM última versión).
@@ -9,8 +9,9 @@ se encuentran instaladas y configuradas las siguientes herramientas:
 
 Al momento de clonar el proyecto, se debe de tener en cuenta la ubicación local 
 de la carpeta, a partir de ahora le llamaremos **$REPO**
+*
 
-##MySQL
+## MySQL
 1. Entrar al cliente de MySQL y conectarse a MySQL Server.
 2. Una vez establecida la conexión, ejecutar los siguientes comandos:
 	```
@@ -25,7 +26,7 @@ de la carpeta, a partir de ahora le llamaremos **$REPO**
 	);
 	```
 
-##Back-end
+## Back-end
 1. Desde línea de comandos, acceder a **$REPO/InventoryServer**
 2. Ejecutar el comando `npm install`
 3. Desde el explorador de archivos, abrir el archivo **$REPO/InventoryServer/src/index.js**
@@ -38,7 +39,7 @@ de la carpeta, a partir de ahora le llamaremos **$REPO**
    en caso contrario, favor de revisar las configuraciones (regresar al paso 4)
 9. Copiar puerto que se imprime una vez que se levanta el servicio
 
-##Front-end
+## Front-end
 1. Desde línea de comandos, acceder a **$REPO/InventoryFront**
 2. Ejecutar el comando `npm install`
 3. Desde el explorador de archivos, abrir los siguientes archivos:
